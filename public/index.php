@@ -18,10 +18,9 @@ $map = [
 
 $path = $request->getPathInfo();
 if (isset($map[$path])) {
-    require_once PAGES_PATH.'header.php';
-    require $map[$path];
-    require_once PAGES_PATH.'footer.php';
-
+    ob_start();
+    include $map[$path];
+    $response->setContent(ob_get_clean());
 } else {
     $response->setStatusCode(404);
     $response->setContent('Not Found');
