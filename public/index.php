@@ -13,7 +13,7 @@ $response = new Response();
 $map = [
     '/home' => PAGES_PATH.'home.php',
     '/article' => PAGES_PATH.'article.php',
-    '/user'  => PAGES_PATH.'user.php',
+    '/contact'  => PAGES_PATH.'contact.php',
 ];
 
 $path = $request->getPathInfo();
