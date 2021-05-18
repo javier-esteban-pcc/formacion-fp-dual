@@ -1,29 +1,20 @@
 <?php
 
+use IESLaCierva\Entrypoint\Router;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-const PAGES_PATH = __DIR__.'/../src/pages/';
-
 $request = Request::createFromGlobals();
-$response = new Response();
- 
-$map = [
-    '/home' => PAGES_PATH.'home.php',
-    '/article' => PAGES_PATH.'article.php',
-    '/contact'  => PAGES_PATH.'contact.php',
-];
-
-$path = $request->getPathInfo();
-if (isset($map[$path])) {
-    ob_start();
-    include $map[$path];
-    $response->setContent(ob_get_clean());
-} else {
+$router = new Router();
+try {
+    $controller = $router->execute($request);
+} catch (Exception $e) {
+    $response = new Response();
     $response->setStatusCode(404);
     $response->setContent('Not Found');
 }
 
+$response = $controller->execute($request);
 $response->send();
