@@ -1,4 +1,6 @@
 {
+    "name": "ieslacierva/fpdual",
+    "description": "Formación Programación Backend en PHP",
     "require": {
         "symfony/http-foundation": "^5.2"
     },
