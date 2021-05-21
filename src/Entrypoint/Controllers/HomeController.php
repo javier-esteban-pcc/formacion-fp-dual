@@ -1,11 +1,10 @@
 <?php
 namespace IESLaCierva\Entrypoint\Controllers;
 
-use IESLaCierva\Entrypoint\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class HomeController implements Controller
+class HomeController
 {
     public function execute(Request $request): Response
     {
