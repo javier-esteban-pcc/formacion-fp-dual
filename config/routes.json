@@ -1,0 +1,8 @@
+[
+  {
+    "name": "home",
+    "path": "/home",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\HomeController::execute",
+    "methods": ["GET"]
+  }
+]

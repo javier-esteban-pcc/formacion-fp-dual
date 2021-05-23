@@ -12,19 +12,12 @@ class Routes
     public function __construct()
     {
         $this->routes = new RouteCollection();
-        $this->configureRoutes();
+        $routes= json_decode(file_get_contents(__DIR__.'/../../config/routes.json'), true);
+        foreach ((array)$routes as $route) {
+            $this->addRoute($route['name'], $route['path'], $route['controller'], $route['methods']);
+        }
     }
 
-    private function configureRoutes()
-    {
-        $this->addRoute(
-            'home',
-            '/home',
-            '\IESLaCierva\Entrypoint\Controllers\HomeController::execute',
-            ['GET']
-        );
-
-    }
 
     public function getRoutes()
     {
