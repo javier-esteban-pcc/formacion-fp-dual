@@ -1,48 +1,31 @@
 <?php
+
 namespace IESLaCierva\Entrypoint;
 
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-class Routes {
+class Routes
+{
     private RouteCollection $routes;
 
-    public function __construct() {
-        $this->routes = new RouteCollection();
-        $this->configureRoutes();
-    }
-
-    private function configureRoutes()
+    public function __construct()
     {
-        $this->addRoute(
-            'get_all_users',
-            '/users',
-            '\IESLaCierva\Entrypoint\Controllers\User\GetAllUsersController::execute',
-            ['GET']
-        );
-
-        $this->addRoute(
-            'get_user_by_id',
-            '/users/{userId}',
-            '\IESLaCierva\Entrypoint\Controllers\User\GetUserByIdController::execute',
-            ['GET']
-        );
-
-        $this->addRoute(
-            'create_user',
-            '/users',
-            '\IESLaCierva\Entrypoint\Controllers\User\CreateUserController::execute',
-            ['POST']
-        );
-
+        $this->routes = new RouteCollection();
+        $routes= json_decode(file_get_contents(__DIR__.'/../../config/routes.json'), true);
+        foreach ((array)$routes as $route) {
+            $this->addRoute($route['name'], $route['path'], $route['controller'], $route['methods']);
+        }
     }
+
 
     public function getRoutes()
     {
         return $this->routes;
     }
 
-    private function addRoute(string $name, string $path, string $controller, array $methods) {
+    private function addRoute(string $name, string $path, string $controller, array $methods)
+    {
         $this->routes->add(
             $name,
             new Route(
