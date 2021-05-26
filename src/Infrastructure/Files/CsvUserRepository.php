@@ -4,6 +4,8 @@ namespace IESLaCierva\Infrastructure\Files;
 
 use IESLaCierva\Domain\User\User;
 use IESLaCierva\Domain\User\UserRepository;
+use IESLaCierva\Domain\User\ValueObject\Email;
+use IESLaCierva\Domain\User\ValueObject\Role;
 
 class CsvUserRepository implements UserRepository
 {
@@ -47,7 +49,7 @@ class CsvUserRepository implements UserRepository
             throw new Exception('File not found');
         }
         fputcsv($file, [
-            $user->id(), $user->name(), $user->name(), $user->password(), $user->role()
+            $user->id(), $user->name(), $user->email()->value(), $user->password(), $user->role()->value()
         ]);
         fclose($file);
     }
@@ -57,9 +59,9 @@ class CsvUserRepository implements UserRepository
         return new User(
             $data[0],
             $data[1],
-            $data[2],
-        $data[3],
-            $data[4]
+            new Email( $data[2]),
+            $data[3],
+            new Role( $data[4])
         );
     }
 
