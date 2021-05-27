@@ -1,0 +1,197 @@
+openapi: 3.0.0
+info:
+  title: Blog API
+  version: '1.0'
+  summary: Blog API
+  description: Blog API
+servers:
+  - url: 'http://localhost:9200'
+paths:
+  /users:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - User
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+      operationId: get-users
+      description: Get All Users
+    post:
+      summary: ''
+      operationId: post-users
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                role:
+                  type: string
+      tags:
+        - User
+      description: Create a new user
+  '/users/{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Not Found
+      operationId: get-user-id
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: User Id
+      tags:
+        - User
+      description: Get user with id UserId
+  /posts:
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+      operationId: get-posts
+      description: Get all published posts
+      tags:
+        - Post
+    post:
+      summary: ''
+      operationId: post-posts
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                userId:
+                  type: string
+      description: Create a pending Post
+      tags:
+        - Post
+  '/posts/{postId}':
+    parameters:
+      - schema:
+          type: string
+        name: postId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: Not Found
+      operationId: get-posts-postId
+      description: Get Post with id postId
+      tags:
+        - Post
+    patch:
+      summary: ''
+      operationId: patch-posts-postId
+      responses:
+        '204':
+          description: No Content
+      description: Update a post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - Published
+      tags:
+        - Post
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9a-f]+'
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum:
+            - Administrador
+            - Editor
+    Post:
+      title: Post
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        author:
+          $ref: '#/components/schemas/User'
+        status:
+          type: string
+          enum:
+            - Pending
+            - Published
+tags:
+  - name: Post
+  - name: User

@@ -40,3 +40,12 @@ services:
         - XDEBUG_CONFIG=client_host=${HOST_IP}
         - PHP_IDE_CONFIG=serverName=${XDEBUG_SERVERNAME}
 
+    swagger:
+      container_name: ies-la-cierva-swagger
+      build:
+        context: .
+        dockerfile: phpdocker/swagger/Dockerfile
+      ports:
+        - 9280:8080
+      volumes:
+        - ./docs/openapi/openapi.yaml:/docs/openapi.yaml:ro
