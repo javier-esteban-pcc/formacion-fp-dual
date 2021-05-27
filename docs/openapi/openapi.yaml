@@ -134,25 +134,37 @@ paths:
       description: Get Post with id postId
       tags:
         - Post
-    patch:
+  '/post/{postId}/publish':
+    parameters:
+      - schema:
+          type: string
+        name: postId
+        in: path
+        required: true
+    post:
       summary: ''
-      operationId: patch-posts-postId
+      operationId: post-post-postId-publish
       responses:
         '204':
           description: No Content
-      description: Update a post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  enum:
-                    - Published
+      description: Mark post with id PostId as published
       tags:
         - Post
+  /payments:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Payment'
+      operationId: get-payments
+      description: Get all payments
 components:
   schemas:
     User:
@@ -192,6 +204,27 @@ components:
           enum:
             - Pending
             - Published
+    Payment:
+      title: Payment
+      type: object
+      properties:
+        id:
+          type: string
+        authorName:
+          type: string
+        postTitle:
+          type: string
+        amount:
+          type: number
+          minimum: 0
+          format: float
+        CreatedAt:
+          type: string
+          format: date-time
+        AuthorId:
+          type: string
+        postId:
+          type: string
 tags:
   - name: Post
   - name: User
