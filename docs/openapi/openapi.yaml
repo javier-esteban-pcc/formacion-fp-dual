@@ -9,7 +9,7 @@ servers:
 paths:
   /users:
     get:
-      summary: Your GET endpoint
+      summary: List all users
       tags:
         - User
       responses:
@@ -24,7 +24,7 @@ paths:
       operationId: get-users
       description: Get All Users
     post:
-      summary: ''
+      summary: Create new user
       operationId: post-users
       responses:
         '201':
@@ -55,7 +55,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get user from id
       responses:
         '200':
           description: OK
@@ -77,7 +77,7 @@ paths:
       description: Get user with id UserId
   /posts:
     get:
-      summary: Your GET endpoint
+      summary: List all posts
       responses:
         '200':
           description: OK
@@ -88,11 +88,11 @@ paths:
                 items:
                   $ref: '#/components/schemas/Post'
       operationId: get-posts
-      description: Get all published posts
+      description: ''
       tags:
         - Post
     post:
-      summary: ''
+      summary: Create a new post
       operationId: post-posts
       responses:
         '201':
@@ -120,7 +120,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get post from Id
       responses:
         '200':
           description: OK
@@ -142,7 +142,7 @@ paths:
         in: path
         required: true
     post:
-      summary: ''
+      summary: Mark post as published
       operationId: post-post-postId-publish
       responses:
         '204':
@@ -152,8 +152,9 @@ paths:
         - Post
   /payments:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: List all payments
+      tags:
+        - Payment
       responses:
         '200':
           description: OK
@@ -174,6 +175,8 @@ components:
         id:
           type: string
           pattern: '[0-9a-f]+'
+          minLength: 13
+          maxLength: 13
         name:
           type: string
         email:
@@ -190,6 +193,9 @@ components:
       properties:
         id:
           type: string
+          pattern: '[0-9a-f]+'
+          minLength: 13
+          maxLength: 13
         title:
           type: string
         body:
@@ -197,31 +203,33 @@ components:
         createdAt:
           type: string
           format: date-time
-        author:
-          $ref: '#/components/schemas/User'
         status:
           type: string
           enum:
             - Pending
             - Published
+        userId:
+          type: string
+          pattern: '[0-9a-f]+'
+          minLength: 13
+          maxLength: 13
     Payment:
       title: Payment
       type: object
       properties:
         id:
           type: string
-        authorName:
-          type: string
-        postTitle:
-          type: string
+          pattern: '[0-9a-f]+'
+          minLength: 13
+          maxLength: 13
         amount:
           type: number
           minimum: 0
           format: float
-        CreatedAt:
+        createdAt:
           type: string
           format: date-time
-        AuthorId:
+        userId:
           type: string
         postId:
           type: string
