@@ -32,7 +32,7 @@ try {
 } catch (ParameterNotValid $e) {
     $response = new Response($e->getMessage(), Response::HTTP_BAD_REQUEST);
 } catch (Exception $e) {
-    $response = new Response('Unexpected error', Response::HTTP_INTERNAL_SERVER_ERROR);
+    $response = new Response($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
 }
 
 $response->send();

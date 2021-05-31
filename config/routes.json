@@ -22,5 +22,29 @@
     "path": "/users",
     "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\User\\CreateUserController::execute",
     "methods": ["POST"]
+  },
+  {
+    "name": "create_post",
+    "path": "/posts",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Post\\CreatePostController::execute",
+    "methods": ["POST"]
+  },
+  {
+    "name": "get_all_posts",
+    "path": "/posts",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Post\\GetAllPostController::execute",
+    "methods": ["GET"]
+  },
+  {
+    "name": "get_post_by_id",
+    "path": "/posts/{postId}",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Post\\GetPostByIdController::execute",
+    "methods": ["GET"]
+  },
+  {
+    "name": "publish_post",
+    "path": "/posts/{postId}/publish",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Post\\PublishPostController::execute",
+    "methods": ["POST"]
   }
 ]
