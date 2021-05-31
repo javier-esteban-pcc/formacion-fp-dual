@@ -43,7 +43,7 @@ class JsonPostRepository implements PostRepository
         $this->posts[$post->postId()] = $post;
 
         $file = fopen(__DIR__.'/posts.json', 'w');
-        fwrite($file, json_encode($this->posts));
+        fwrite($file, json_encode(array_values($this->posts)));
         fclose($file);
     }
 

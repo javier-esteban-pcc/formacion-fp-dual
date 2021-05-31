@@ -63,7 +63,7 @@ class Payment implements \JsonSerializable
         return [
             'id' => $this->postId(),
             'amount' => $this->amount()->value(),
-            'createdAt' => $this-$this->paymentDate()->format(DATE_ATOM),
+            'createdAt' => $this->paymentDate()->format(DATE_ATOM),
             'userId' => $this->authorId(),
             'postId' => $this->postId()
         ];
