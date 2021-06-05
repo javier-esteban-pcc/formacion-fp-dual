@@ -30,7 +30,7 @@ function createPublishButton(post) {
 
     button.addEventListener('click', (event) => {
         const postId = event.toElement.getAttribute('data-post-id');
-        publishPost(postId);
+        publishPost(postId, refreshRow);
     })
 
     return button;
@@ -49,8 +49,17 @@ function createViewButton(post) {
     return button;
 }
 
+function refreshRow(postId) {
+    getPost(postId, function(post) {
+        const row = createPostRow(post);
+        let oldRow = document.getElementById(`row-${postId}`)
+        oldRow.innerHTML = row.outerHTML;
+    })
+}
+
 function createPostRow(post) {
     let row = document.createElement('tr');
+    row.setAttribute('id', `row-${post.id}`)
     row.setAttribute('data-post-id', post.id)
     const button = createViewButton(post);
     let buttonCell = document.createElement('td');

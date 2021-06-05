@@ -29,7 +29,6 @@ export const publishPost = (postId, callBack) => {
     };
 
     fetch(`http://localhost:9200/posts/${postId}/publish`, requestOptions)
-        .then(response => response.text())
-        .then(callBack)
+        .then(callBack(postId))
         .catch(error => console.log('error', error));
 }
