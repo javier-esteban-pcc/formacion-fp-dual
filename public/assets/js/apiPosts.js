@@ -10,7 +10,7 @@ export function getAllPosts(printAllPosts) {
         .catch(error => console.log('error', error));
 }
 
-export function getPost(postId, printPost) {
+export function getPost(postId, callBack) {
     var requestOptions = {
         method: 'GET',
         redirect: 'follow'
@@ -18,6 +18,18 @@ export function getPost(postId, printPost) {
 
     fetch("http://localhost:9200/posts/" + postId, requestOptions)
         .then(response => response.json())
-        .then(printPost)
+        .then(callBack)
+        .catch(error => console.log('error', error));
+}
+
+export const publishPost = (postId, callBack) => {
+    var requestOptions = {
+        method: 'POST',
+        redirect: 'follow'
+    };
+
+    fetch(`http://localhost:9200/posts/${postId}/publish`, requestOptions)
+        .then(response => response.text())
+        .then(callBack)
         .catch(error => console.log('error', error));
 }
