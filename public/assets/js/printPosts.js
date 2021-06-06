@@ -1,4 +1,4 @@
-import {getPost, publishPost} from "./apiPosts.js";
+import {createPost, getPost, publishPost} from "./apiPosts.js";
 
 const showPostModal = event => {
     getPost(event.toElement.getAttribute('data-post-id'), (post) => {
@@ -79,5 +79,46 @@ export const printPosts = posts => {
             tableBody.appendChild(createPostRow(post));
         }
     )
+}
+
+export function submitPostForm(event) {
+    event.preventDefault();
+
+    let form = document.getElementById('new-post-form');
+    let formData = new FormData(form);
+
+    const data = {
+        "title": formData.get('title'),
+        "body": formData.get('body'),
+        "userId": formData.get('userId')
+    };
+
+    createPost(JSON.stringify( data))
+
+    let buttonClose = document.querySelector('.btn-close');
+    buttonClose.click();
+}
+
+export function showNewPostModal() {
+    let modalTitle = document.querySelector('.modal-title')
+    let modalBodyInput = document.querySelector('.modal-body')
+
+    modalTitle.textContent = 'New Post';
+    modalBodyInput.innerHTML = `
+                <form id="new-post-form">
+                    <div class="mb-3">
+                        <label class="form-label" for="post-title">Title</label>
+                        <input type="text" name="title" class="form-control" id="post-title">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="post-body">Body</label>
+                        <textarea name="body" class="form-control" id="post-body" cols="30" rows="10"></textarea>
+                    </div>
+                    <input type="hidden" name="userId" value="772fc60b194f3">
+                    <button type="submit" id="submit-new-post" class="btn btn-primary">Submit</button>
+                </form>`
+
+    let newPostButton = document.getElementById('submit-new-post')
+    newPostButton.addEventListener('click', submitPostForm);
 
 }

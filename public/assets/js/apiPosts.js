@@ -32,3 +32,20 @@ export const publishPost = (postId, callBack) => {
         .then(callBack(postId))
         .catch(error => console.log('error', error));
 }
+
+export function createPost(data) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: data,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:9200/posts", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}
