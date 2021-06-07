@@ -1,7 +1,7 @@
-import {getAllPosts} from "./assets/js/apiPosts.js";
-import {printPosts, showNewPostModal} from "./assets/js/printPosts.js";
-
+import {getAllPosts} from "./js/postsApiClient.js";
+import {renderPosts, showNewPostModal} from "./js/postsTable.js";
 
 let newPostButton = document.getElementById('new-post')
 newPostButton.addEventListener('click', showNewPostModal);
-getAllPosts(printPosts);
+
+getAllPosts(renderPosts);

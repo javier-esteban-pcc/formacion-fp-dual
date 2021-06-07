@@ -1,4 +1,4 @@
-import {createPost, getPost, publishPost} from "./apiPosts.js";
+import {createPost, getPost, publishPost} from "./postsApiClient.js";
 
 const showPostModal = event => {
     getPost(event.toElement.getAttribute('data-post-id'), (post) => {
@@ -69,7 +69,7 @@ function createPostRow(post) {
     return row;
 }
 
-export const printPosts = posts => {
+export const renderPosts = posts => {
     let postTable = document.getElementById('post-table');
     let tableHead = postTable.querySelector('thead');
     let tableBody = postTable.querySelector('tbody');
