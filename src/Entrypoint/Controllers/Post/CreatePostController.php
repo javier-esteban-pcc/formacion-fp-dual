@@ -15,8 +15,8 @@ class CreatePostController
     {
         $data = json_decode($request->getContent(), true);
         $service = new CreatePost(new JsonPostRepository(), new CsvUserRepository());
-        $service->execute($data['title'], $data['body'], $data['userId']);
+        $newPost = $service->execute($request->get('title'), $request->get('body'), $request->get('userId'));
 
-        return new JsonResponse('', Response::HTTP_CREATED);
+        return new JsonResponse(['postId' => $newPost->postId()], Response::HTTP_CREATED);
     }
 }

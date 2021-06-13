@@ -18,7 +18,7 @@ class CreatePost
         $this->userRepository = $userRepository;
     }
 
-    public function execute(string $title, string $body, string $authorId)
+    public function execute(string $title, string $body, string $authorId): Post
     {
         $author = $this->userRepository->findById($authorId);
         if ($author === null) {
@@ -27,5 +27,7 @@ class CreatePost
 
         $post = Post::create($title, $body, $authorId);
         $this->postRepository->save($post);
+
+        return $post;
     }
 }
