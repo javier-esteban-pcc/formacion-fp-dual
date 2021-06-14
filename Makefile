@@ -27,7 +27,10 @@ down: ## alias stop
 		make stop
 
 bash:
-		docker-compose run --rm ${DOCKER_PHP_SERVICE} bash
+		docker-compose run -u ${UID}:${GID}  --rm ${DOCKER_PHP_SERVICE} bash
+
+bash-root:
+		docker-compose run  --rm ${DOCKER_PHP_SERVICE} bash
 
 logs:
 		docker-compose logs -f ${DOCKER_PHP_SERVICE}
