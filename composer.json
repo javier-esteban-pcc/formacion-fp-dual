@@ -5,7 +5,8 @@
         "symfony/http-foundation": "^5.2",
         "symfony/routing": "^5.2",
         "symfony/http-kernel": "^5.2",
-        "robmorgan/phinx": "^0.12.7"
+        "robmorgan/phinx": "^0.12.7",
+        "phpmailer/phpmailer": "^6.4"
     },
     "autoload": {
         "psr-4": {

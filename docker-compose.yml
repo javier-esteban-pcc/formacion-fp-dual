@@ -62,3 +62,10 @@ services:
         - 9280:8080
       volumes:
         - ./docs/openapi/openapi.yaml:/docs/openapi.yaml:ro
+        -
+    mailhog:
+      image: mailhog/mailhog:latest
+      container_name: ies-la-cierva-mailhog
+      ports:
+        - "9225:8025"
+
