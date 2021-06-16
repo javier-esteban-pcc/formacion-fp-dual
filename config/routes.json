@@ -45,6 +45,24 @@
     "name": "publish_post",
     "path": "/posts/{postId}/publish",
     "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Post\\PublishPostController::execute",
-    "methods": ["POST"]
+    "methods": [
+      "POST"
+    ]
+  },
+  {
+    "name": "login_user",
+    "path": "/login",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Session\\LoginController::execute",
+    "methods": [
+      "POST"
+    ]
+  },
+  {
+    "name": "get_session_info",
+    "path": "/session",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Session\\InfoController::execute",
+    "methods": [
+      "GET"
+    ]
   }
 ]

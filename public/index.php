@@ -12,6 +12,7 @@ use Symfony\Component\Routing\RequestContext;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+session_start();
 
 $request = Request::createFromGlobals();
 $routes = new Routes();

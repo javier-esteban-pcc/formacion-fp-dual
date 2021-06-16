@@ -42,6 +42,18 @@ class CsvUserRepository implements UserRepository
         return null;
     }
 
+    public function findByEmail(string $email): ?User
+    {
+        /** @var User $user */
+        foreach ($this->users as $user) {
+            if ($user->email()->value() === $email) {
+                return $user;
+            }
+        }
+
+        return null;
+    }
+
     public function save(User $user): void
     {
         $file = fopen(__DIR__.'/users.csv', "a");

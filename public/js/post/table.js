@@ -1,4 +1,4 @@
-import {createPost, getPost, publishPost} from "./postApiClient.js";
+import {createPost, getPost, publishPost} from "./apiClient.js";
 
 function createViewButton(postId) {
     let button = document.createElement('button');
