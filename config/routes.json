@@ -13,7 +13,7 @@
   },
   {
     "name": "get_user_by_id",
-    "path": "/users/{id}",
+    "path": "/users/{userId}",
     "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\User\\GetUserByIdController::execute",
     "methods": ["GET"]
   },

@@ -3,6 +3,8 @@
 namespace IESLaCierva\Entrypoint\Controllers\User;
 
 use IESLaCierva\Application\User\CreateNewUser\CreateNewUserService;
+use IESLaCierva\Domain\User\ValueObject\Role;
+use IESLaCierva\Infrastructure\Database\MySqlUserRepository;
 use IESLaCierva\Infrastructure\Files\CsvUserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,14 +16,12 @@ class CreateUserController
 
     public function __construct()
     {
-        $this->service = new CreateNewUserService(new CsvUserRepository());
+        $this->service = new CreateNewUserService(new MySqlUserRepository());
     }
 
     public function execute(Request $request): Response
     {
-        $json = $request->getContent();
-        $data = json_decode($json, true);
-        $this->service->execute($data['name'], $data['email'], $data['password'], $data['role']);
+        $this->service->execute($request->get('name'), $request->get('email'), $request->get('password'), $request->get('role') ?? Role::EDITOR);
         return new JsonResponse([], Response::HTTP_CREATED);
     }
 }

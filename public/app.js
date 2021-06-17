@@ -10,7 +10,8 @@ getAllUsers(renderUserTable);
  let newPostButton = document.getElementById('new-post');
 newPostButton.addEventListener('click', showNewPostModal)
 
-
+let newUserButton = document.getElementById('user-post');
+newUserButton.addEventListener('click', showNewUserModal)
 
 
 function getSessionInfo(callback) {

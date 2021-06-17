@@ -3,6 +3,7 @@
 namespace IESLaCierva\Entrypoint\Controllers\User;
 
 use IESLaCierva\Application\User\GetUserById\GetUserByIdService;
+use IESLaCierva\Infrastructure\Database\MySqlUserRepository;
 use IESLaCierva\Infrastructure\Files\CsvUserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +13,7 @@ class GetUserByIdController
 {
     public function __construct()
     {
-        $this->service = new GetUserByIdService(new CsvUserRepository());
+        $this->service = new GetUserByIdService(new MySqlUserRepository());
     }
 
     public function execute(Request $request): Response

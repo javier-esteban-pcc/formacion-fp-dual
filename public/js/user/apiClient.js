@@ -4,7 +4,7 @@ export function getUser(userId, callback) {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:9200/users/" + UserId, requestOptions)
+    fetch("http://localhost:9200/users/" + userId, requestOptions)
         .then(response => response.json())
         .then(post => callback(post))
 }

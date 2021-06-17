@@ -4,7 +4,7 @@ function createViewButton(userId) {
     let button = document.createElement('button');
     button.setAttribute('data-user-id', userId);
     button.setAttribute('data-bs-toggle', "modal");
-    button.setAttribute('data-bs-target', "#user-modal");
+    button.setAttribute('data-bs-target', "#post-modal");
     button.classList.add('view-user', 'btn', 'btn-primary');
     button.addEventListener('click', function (event) {
         getUser(userId, showUserModal)
@@ -56,25 +56,6 @@ function showUserModal(user) {
 
     modalTitle.textContent = user.id;
     modalBody.innerHTML = `<p>${user.name}</p><p>${user.email}</p>`
-
-    if (user.status === 'Pending') {
-        modalBody.innerHTML += `<button data-user-id="${user.id}" id="publish-user" class="btn btn-primary">Publish</button>`
-        let publishButton = document.getElementById('publish-user');
-        publishButton.addEventListener('click', function (event) {
-            const userId = event.toElement.getAttribute('data-user-id');
-            publishUser(userId, refreshRow)
-        })
-    }
-}
-
-function refreshRow(userId) {
-    getUser(userId, (user) => {
-        let oldRow = document.getElementById('user-id-' + userId);
-        oldRow.replaceWith(createUserRow(user));
-
-        const buttonClose = document.querySelector('.btn-close');
-        buttonClose.click()
-    })
 }
 
 function addNewUserRow(user) {
@@ -106,14 +87,17 @@ export function showNewUserModal() {
     modalBody.innerHTML = `
                 <form id="new-user-form">
                     <div class="mb-3">
-                        <label class="form-label" for="user-title">Title</label>
-                        <input type="text" name="title" class="form-control" id="user-title">
+                        <label class="form-label" for="user-title">Name</label>
+                        <input type="text" name="name" class="form-control" id="user-title">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="user-body">Body</label>
-                        <textarea name="body" class="form-control" id="user-body" cols="30" rows="10"></textarea>
+                        <label class="form-label" for="user-title">email</label>
+                        <input type="text" name="email" class="form-control" id="user-title">
                     </div>
-                    <input type="hidden" name="userId" value="772fc60b194f3">
+                    <div class="mb-3">
+                        <label class="form-label" for="user-title">Password</label>
+                        <input type="text" name="password" class="form-control" id="user-title">
+                    </div>
                     <button type="submit" id="submit-new-user" class="btn btn-primary">Submit</button>
                 </form>`
 
