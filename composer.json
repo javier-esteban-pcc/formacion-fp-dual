@@ -8,7 +8,8 @@
         "robmorgan/phinx": "^0.12.7",
         "phpmailer/phpmailer": "^6.4",
         "vlucas/phpdotenv": "^5.3",
-        "fzaninotto/faker": "^1.9"
+        "fzaninotto/faker": "^1.9",
+        "twig/twig": "^3.0"
     },
     "autoload": {
         "psr-4": {

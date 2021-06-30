@@ -1,12 +1,12 @@
 <?php
 
-namespace IESLaCierva\Entrypoint\Controllers\Session;
+namespace IESLaCierva\Entrypoint\Controllers\Api\User;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class InfoController
+class SessionController
 {
     public function execute(Request $request): Response
     {

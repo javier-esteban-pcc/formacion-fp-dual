@@ -2,57 +2,31 @@
   {
     "name": "home",
     "path": "/home",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\HomeController::execute",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Ui\\HomeController::execute",
     "methods": ["GET"]
   },
   {
     "name": "get_all_users",
     "path": "/users",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\User\\GetAllUsersController::execute",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Api\\User\\GetAllUsersController::execute",
     "methods": ["GET"]
   },
   {
     "name": "get_user_by_id",
     "path": "/users/{userId}",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\User\\GetUserByIdController::execute",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Api\\User\\GetUserByIdController::execute",
     "methods": ["GET"]
   },
   {
     "name": "create_user",
     "path": "/users",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\User\\CreateUserController::execute",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Api\\User\\CreateUserController::execute",
     "methods": ["POST"]
-  },
-  {
-    "name": "create_post",
-    "path": "/posts",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Post\\CreatePostController::execute",
-    "methods": ["POST"]
-  },
-  {
-    "name": "get_all_posts",
-    "path": "/posts",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Post\\GetAllPostController::execute",
-    "methods": ["GET"]
-  },
-  {
-    "name": "get_post_by_id",
-    "path": "/posts/{postId}",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Post\\GetPostByIdController::execute",
-    "methods": ["GET"]
-  },
-  {
-    "name": "publish_post",
-    "path": "/posts/{postId}/publish",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Post\\PublishPostController::execute",
-    "methods": [
-      "POST"
-    ]
   },
   {
     "name": "login_user",
     "path": "/login",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Session\\LoginController::execute",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Api\\User\\LoginController::execute",
     "methods": [
       "POST"
     ]
@@ -60,7 +34,7 @@
   {
     "name": "get_session_info",
     "path": "/session",
-    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Session\\InfoController::execute",
+    "controller": "\\IESLaCierva\\Entrypoint\\Controllers\\Api\\User\\SessionController::execute",
     "methods": [
       "GET"
     ]

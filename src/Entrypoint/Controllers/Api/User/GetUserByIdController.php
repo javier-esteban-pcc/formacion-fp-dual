@@ -1,6 +1,6 @@
 <?php
 
-namespace IESLaCierva\Entrypoint\Controllers\User;
+namespace IESLaCierva\Entrypoint\Controllers\Api\User;
 
 use IESLaCierva\Application\User\GetUserById\GetUserByIdService;
 use IESLaCierva\Infrastructure\Database\MySqlUserRepository;

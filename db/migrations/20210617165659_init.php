@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class V20210613182823 extends AbstractMigration
+final class Init extends AbstractMigration
 {
     /**
      * Change Method.
@@ -16,13 +16,11 @@ final class V20210613182823 extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change(): void
+    public function up(): void
     {
-//        $this->execute('create schema posts;');
-
         $this->execute("
-            CREATE TABLE user
-                (
+            CREATE TABLE user 
+            (
                     id char(13) not null,
                     name varchar(255) null,
                     email varchar(255) null,
@@ -33,27 +31,13 @@ final class V20210613182823 extends AbstractMigration
                 );
         ");
 
-        $this->execute("
-            create table post
-                (
-                    id char(13) not null,
-                    title varchar(255) null,
-                    body text null,
-                    user_id char(13) null,
-                    status varchar(255) null,
-                    created_at datetime null
-                );
-        ");
 
+    }
+
+    public function down()
+    {
         $this->execute("
-            create table payment
-                (
-                    id char(13) not null,
-                    user_id char(13) not null,
-                    amount int,
-                    date datetime,  
-                    post_id char(13)
-                )
+            DROP TABLE user 
         ");
     }
 }

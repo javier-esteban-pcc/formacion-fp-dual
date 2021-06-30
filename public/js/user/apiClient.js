@@ -34,3 +34,14 @@ export function createUser(formData, callback) {
         .then(callback)
         .catch(error => console.log('error', error));
 }
+
+export function getSessionInfo(callback) {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:9200/session", requestOptions)
+        .then(response => response.json())
+        .then(callback);
+}

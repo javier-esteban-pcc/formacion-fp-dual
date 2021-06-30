@@ -1,6 +1,6 @@
 <?php
 
-namespace IESLaCierva\Entrypoint\Controllers\Session;
+namespace IESLaCierva\Entrypoint\Controllers\Api\User;
 
 
 use IESLaCierva\Infrastructure\Files\CsvUserRepository;
